@@ -9,7 +9,7 @@
 
 .input-search{
     background-color: rgb(48, 41, 62);
-    padding-left: 10px;
+
     border-radius: 5px;
     width: 200px;
     color: white;
@@ -18,7 +18,7 @@
     border: none;
 }
 
-.btn-search{
+.btn-icon{
     background-color: Transparent;
     color: white;
     height: 50px;

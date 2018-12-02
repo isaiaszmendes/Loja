@@ -1,15 +1,60 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons'
 import Icon from './Icon'
 import './Search.css'
 
-const Search = props => {
-    return (
+class Search extends Component {
+
+    constructor(props){
+        super(props)
+
+        this.state = {
+            input: "",
+            pesquisando: false,
+            functionSearch: props.resultSearch,
+            functionReset: props.resetSearch
+        }
         
-        <div className='search'>
-            <input type="text" className='input-search' name="" placeholder='Search...' />
-            <button className='btn-search'><Icon /></button>            
-        </div>
-    )
+
+        this.btnSearch   = this.btnSearch.bind(this)
+        this.btnReset    = this.btnReset.bind(this)
+        this.pressEnter  = this.pressEnter.bind(this)
+        
+    }
+
+    btnSearch = () =>{        
+        const result = this.state.input
+        this.state.functionSearch(result)
+    }
+
+    btnReset = () =>{
+        this.setState({input: ""})
+        this.state.functionReset()
+    }
+
+    pressEnter(e) {
+        if (e.key === 'Enter') {
+            const result = this.state.input
+            this.state.functionSearch(result)
+        }
+      }
+ 
+    render(){
+        return (        
+            <div className='search'>
+                <button onClick={this.btnSearch} className='btn-icon'><Icon nameIcon={faSearch}/></button> 
+                <input type="text" 
+                    className='input-search' 
+                        value={this.state.input}
+                        onChange={e => this.setState({input: e.target.value})
+                        } onKeyPressCapture={this.pressEnter}
+                    placeholder='Search...' />            
+                <button onClick={this.btnReset} className='btn-icon'><Icon nameIcon={faTimes}/></button>        
+            </div>
+        )
+    }
 }
 
 export default Search
+
+

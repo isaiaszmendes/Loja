@@ -6,7 +6,10 @@ const Header = props => {
     return (
         <header className="App-header">
             <Logo />
-            <Search />            
+            <Search 
+                resultSearch={props.resultSearch}
+                resetSearch={props.resetSearch}
+                />            
         </header>
     )
 }
