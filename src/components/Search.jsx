@@ -15,11 +15,9 @@ class Search extends Component {
             functionReset: props.resetSearch
         }
         
-
         this.btnSearch   = this.btnSearch.bind(this)
         this.btnReset    = this.btnReset.bind(this)
-        this.pressEnter  = this.pressEnter.bind(this)
-        
+        this.pressEnter  = this.pressEnter.bind(this)        
     }
 
     btnSearch = () =>{        
@@ -42,14 +40,14 @@ class Search extends Component {
     render(){
         return (        
             <div className='search'>
-                <button onClick={this.btnSearch} className='btn-icon'><Icon nameIcon={faSearch}/></button> 
+                <button onClick={this.btnSearch} className='btn-icon btn-search'><Icon nameIcon={faSearch}/></button> 
                 <input type="text" 
                     className='input-search' 
                         value={this.state.input}
                         onChange={e => this.setState({input: e.target.value})
                         } onKeyPressCapture={this.pressEnter}
                     placeholder='Search...' />            
-                <button onClick={this.btnReset} className='btn-icon'><Icon nameIcon={faTimes}/></button>        
+                <button onClick={this.btnReset} className='btn-icon btn-delete'><Icon nameIcon={faTimes}/></button>        
             </div>
         )
     }

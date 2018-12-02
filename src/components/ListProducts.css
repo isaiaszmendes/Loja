@@ -1,8 +1,9 @@
 .list-products{
-    width: 500px;
-    display: flex;
-    justify-content: center;
+    width: 300px;
+
     background-color: rgb(69, 66, 75);
+    overflow: hidden;
+
 }
 
 .product-img{

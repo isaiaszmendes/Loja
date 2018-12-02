@@ -47,8 +47,24 @@ class App extends Component {
                     resetSearch={this.resetSearch}
                     />
                 <Result titulo={this.state.resultSearch} />
-                <ListProducts />
-                <ListProducts />
+                <div className='App-container'>
+                    <ListProducts />
+                    <ListProducts />
+                    <ListProducts />
+                    <ListProducts />
+                    <ListProducts />
+                    <ListProducts />
+                    <ListProducts />
+                    <ListProducts />
+                    <ListProducts />
+                    <ListProducts />
+                    <ListProducts />
+                    <ListProducts />
+                    <ListProducts />
+                    <ListProducts />
+                    <ListProducts />
+                    <ListProducts />
+                </div>
         
                 
             </div>

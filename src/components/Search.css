@@ -14,8 +14,13 @@
     width: 200px;
     color: white;
     outline:none;
-    font-size: 15pt;
+    font-size: 13pt;
     border: none;
+}
+
+.input-search::selection{
+    background-color:rgb(196, 187, 214);
+    color: #000;
 }
 
 .btn-icon{
@@ -27,5 +32,15 @@
     border: none;
     height: 40px;
     margin: 0px 10px;
+    transition: .8s;
+}
 
+.btn-search:hover{
+    color: rgb(196, 187, 214);
+    transform: rotate(-8deg)
+}
+
+.btn-delete:hover{
+    color: rgb(250, 9, 9);
+    transform: rotate(5deg)
 }
