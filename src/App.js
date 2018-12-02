@@ -3,6 +3,7 @@ import './App.css';
 // Components
 import Header from './components/Header'
 import Result from './components/Result'
+import ListProducts from './components/ListProducts'
 
 
 class App extends Component {
@@ -11,7 +12,7 @@ class App extends Component {
         super(props)
 
         this.state = {
-            valueSearch: "",
+            resultSearch: "",
             pesquisando: false
         }
 
@@ -23,18 +24,18 @@ class App extends Component {
     resultSearch(params) {
         // console.log(params)
         this.setState({pesquisando: true})
-        this.setState({valueSearch: params})
-        // console.log(this.state.valueSearch)
+        this.setState({resultSearch: params})
+        // console.log(this.state.resultSearch)
         
     } 
 
     resetSearch = () =>{        
-        console.log(this.state.valueSearch)
+        console.log(this.state.resultSearch)
         this.setState({
-            valueSearch: '',
+            resultSearch: '',
             pesquisando: true
         })
-        console.log(this.state.valueSearch)
+        console.log(this.state.resultSearch)
     }
 
 
@@ -45,7 +46,11 @@ class App extends Component {
                     resultSearch={this.resultSearch}
                     resetSearch={this.resetSearch}
                     />
-                <Result titulo={this.state.valueSearch}/>
+                <Result titulo={this.state.resultSearch} />
+                <ListProducts />
+                <ListProducts />
+        
+                
             </div>
         )
     }
