@@ -1,3 +1,9 @@
 .logo{
     font-family: 'Pacifico';
 }
+
+@media only screen and (max-device-width: 470px) {
+    .logo{
+       display: none;
+    } 
+}

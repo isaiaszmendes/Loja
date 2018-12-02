@@ -1,9 +1,17 @@
 .result-search{
     background-color: rgb(196, 187, 214);
-    padding: 20px 40px;
+    padding: 15px 40px;
     
 }
 .result-title{
     margin: 0;
     font-size: 18pt;
 }
+
+@media only screen and (max-device-width: 470px) {
+    .result-title{
+        transition: 1s;
+        font-size: 14pt;
+    }
+}
+

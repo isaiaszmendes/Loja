@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 // Components
 import Header from './components/Header'
-import Result from './components/Result'
+
 import ListProducts from './components/ListProducts'
 
 
@@ -26,7 +26,6 @@ class App extends Component {
         this.setState({pesquisando: true})
         this.setState({resultSearch: params})
         // console.log(this.state.resultSearch)
-        
     } 
 
     resetSearch = () =>{        
@@ -45,8 +44,9 @@ class App extends Component {
                 <Header 
                     resultSearch={this.resultSearch}
                     resetSearch={this.resetSearch}
+                    titulo={this.state.resultSearch}
                     />
-                <Result titulo={this.state.resultSearch} />
+
                 <div className='App-container'>
                     <ListProducts />
                     <ListProducts />
@@ -63,7 +63,7 @@ class App extends Component {
                     <ListProducts />
                     <ListProducts />
                     <ListProducts />
-                    <ListProducts />
+                    <ListProducts /> 
                 </div>
         
                 

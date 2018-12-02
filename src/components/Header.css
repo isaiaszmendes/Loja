@@ -1,0 +1,19 @@
+.header-search{
+    background-color: rgb(82, 64, 119);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    font-size: calc(10px + 1vmin);
+    overflow: hidden;
+    /* padding-bottom: 5px; */
+    color: white;
+    height: 58.5px;
+}
+
+@media only screen and (max-device-width: 428px) {
+    .header-search{
+        height: 70.5px;
+
+    } 
+}
