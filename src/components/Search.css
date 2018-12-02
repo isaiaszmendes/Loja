@@ -1,0 +1,31 @@
+.search{
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: rgb(48, 41, 62);
+    border-radius: 5px;
+    margin: 0 10px;
+    height: 40px;
+}
+
+.input-search{
+    background-color: rgb(48, 41, 62);
+    padding-left: 10px;
+    border-radius: 5px;
+    width: 200px;
+    color: white;
+    outline:none;
+    font-size: 15pt;
+    border: none;
+}
+
+.btn-search{
+    background-color: Transparent;
+    color: white;
+    height: 50px;
+    cursor: pointer;
+    outline:none;
+    border: none;
+    height: 40px;
+    margin: 0px 10px;
+
+}

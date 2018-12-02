@@ -4,7 +4,7 @@ import './Logo.css'
 
 const Logo = props => {
     return (
-        <h1 className='logo'>mmartan</h1>
+        <h1 className='logo'>Mmartan</h1>
     )
 }
 

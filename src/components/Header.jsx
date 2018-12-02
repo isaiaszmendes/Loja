@@ -6,8 +6,7 @@ const Header = props => {
     return (
         <header className="App-header">
             <Logo />
-            <Search />
-            
+            <Search />            
         </header>
     )
 }
