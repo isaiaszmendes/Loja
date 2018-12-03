@@ -5,15 +5,8 @@ import axios from 'axios'
 import './App.css'
 // Components
 import Header from './components/Header'
-import ListProducts from './components/ListProducts'
-import ListSearch from './components/ListSearch'
 import Product from './components/Product'
 
-function searchInObject(req){
-    return function(x){
-        return console.log(x, req);
-    }
-}
 
 class App extends Component {
 
@@ -28,12 +21,6 @@ class App extends Component {
 
         this.resetSearch    = this.resetSearch.bind(this)
         this.resultSearch      = this.resultSearch.bind(this)
-
-        // config.syncState('produtos',{
-        //     context: this,
-        //     state: 'produtos',
-        //     asArray: false
-        // })
 
     }
     componentDidMount(){
@@ -74,7 +61,19 @@ class App extends Component {
        
     } 
 
-    resetSearch = () =>{   
+    resetSearch = () =>{  
+        this.setState({pesquisando: true})
+        const url = `https://loja-mmartan.firebaseio.com/produtos.json?orderBy="title"`
+        axios.get(url)
+            .then(dados => {
+                this.setState({
+                    produtos: dados.data,
+                    pesquisando: false
+                })
+            })
+            .catch(err => {
+                console.log('Deu ruim',err);
+            }) 
       
         this.setState({
             resultSearch: '',
@@ -84,13 +83,10 @@ class App extends Component {
     }
 
     render() {
-        console.log(this.state.pesquisando, 'antes do render')
-        // if (this.state.pesquisando) {
             if (this.state.pesquisando) {
                 return (
                     <div>
-                        <p>Carregando .... </p>
-                        {/* {} */}
+                        <p>Carregando .... </p>                        
                     </div>
                 )
             }
@@ -101,15 +97,14 @@ class App extends Component {
                         resetSearch={this.resetSearch}
                         titulo={this.state.resultSearch}
                         />
-                    {/* <p>{console.log(JSON.stringify(this.state.produtos))}</p> */}
-                    <div className='App-container'>
-                        {/* <ListSearch  />  */}
+                    <div className='resul-label'>
                         <h5>Total: {Object.keys(this.state.produtos).length}</h5>
-                        {
-                            
+                    </div>
+                    <div className='App-container'>                                          
+                        {                            
                            Object.keys(this.state.produtos)
                             .map(key => {
-                                // console.log(key);
+
                                 return  <Product key={key}
                                         title={this.state.produtos[key].title}
                                         description={this.state.produtos[key].description}
@@ -118,29 +113,10 @@ class App extends Component {
                                         price={this.state.produtos[key].price}
                                     />
                             })
-                        }
-                        
+                        }                        
                     </div>
                 </div>          
             )
-        // }else{
-        //     return (
-        //         <div className="App">
-        //             <Header 
-        //                 resultSearch={this.resultSearch}
-        //                 resetSearch={this.resetSearch}
-        //                 titulo={this.state.resultSearch}
-        //             />
-        //             <div className='App-container'>
-        //                 <ListProducts 
-        //                     pesquisando={this.state.pesquisando}
-        //                     result={this.state.resultSearch}
-        //                 />
-        //             </div>
-        //         </div>          
-        //     )
-        // }
-
     }
 }
     

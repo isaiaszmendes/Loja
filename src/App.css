@@ -1,7 +1,3 @@
-.App {
-    
-}
-
 .App-logo {
     animation: App-logo-spin infinite 20s linear;
     height: 40vmin;
@@ -14,12 +10,20 @@
 
 }
 
+.result-label, h5{
+    color: rgb(235, 100, 10);
+    padding-top: 60px;
+    margin-top: 75px;
+    padding-left: 70px;
+    font-size: 15pt;
+    transition: 1s;
 
+}
 
 .App-container{
     display: flex;
     flex-wrap: wrap;
-    margin: 160px 50px 20px;
+    margin: 20px 50px 20px;
     justify-content: space-around;
 }
 
@@ -41,6 +45,13 @@
         padding-bottom: 18.425px;
 
     } 
+}
+
+@media only screen and (max-device-width: 470px) {
+    .result-label, h5{
+        font-size: 11pt;
+    
+    }
 }
 
 @media only screen and (min-device-width: 700px) {
