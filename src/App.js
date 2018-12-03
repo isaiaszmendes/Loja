@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import firebase from 'firebase'
-import config  from './config'
 import axios from 'axios'
 import './App.css'
 // Components

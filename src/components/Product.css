@@ -1,0 +1,39 @@
+.list-products{
+    background-color: #bfbfbf;
+    border-radius: 5px;
+    transition: .8s;
+    margin: 10px 0px;
+    overflow: hidden;
+}
+
+.product-img{
+    overflow: hidden;
+}
+.list-products:hover{
+    box-shadow: 5px 5px 10px darkgray;
+}
+
+.product-title{
+    font-family: Proxima Nova,-apple-system,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
+    font-size: 15pt;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    
+}
+
+.product-title,div,h3{
+    font-size: 15pt;
+    transition: .8s;
+}
+.price-discunt{
+    text-decoration: line-through;
+}
+
+
+
+@media only screen and (max-device-width: 470px) {
+    .product-title, h3{
+        font-size: 13pt;
+    }
+}

@@ -1,4 +1,5 @@
 import React from 'react'
+import './Product.css' 
 
 const Product = props => {
     return (
@@ -7,14 +8,21 @@ const Product = props => {
                 <img className='img' src={props.url} alt={props.nameImg} />
             </div>
             <div className='product-title'>
-                <h2>{props.title}</h2>
-                <p>{props.description}</p>
+               <div>
+                    <h3>{props.title}</h3>
+                    <p>{props.description}</p>
+               </div>
+                <div>
+                    <div className='product-price'>
+                        <p className='price-discunt'>{props.price}</p>
+                        <p>{parseFloat((props.price /1.2).toFixed(2))}</p>
+                    </div>
+                </div>
             </div>
-            <div className='product-price'>
-                <h2>{props.price}</h2>
-            </div>
+        
         </div>
     )
 }
 
 export default Product
+
