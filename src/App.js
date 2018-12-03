@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.css'
 // Components
 import Header from './components/Header'
-
 import ListProducts from './components/ListProducts'
-
 
 class App extends Component {
 
@@ -13,62 +11,63 @@ class App extends Component {
 
         this.state = {
             resultSearch: "",
-            pesquisando: false
+            pesquisando: false,
         }
 
         this.resetSearch    = this.resetSearch.bind(this)
         this.resultSearch      = this.resultSearch.bind(this)
-        
+
     }
 
-    resultSearch(params) {
-        // console.log(params)
+    resultSearch = (params) =>{
         this.setState({pesquisando: true})
         this.setState({resultSearch: params})
-        // console.log(this.state.resultSearch)
+
+       
     } 
 
     resetSearch = () =>{        
-        console.log(this.state.resultSearch)
         this.setState({
             resultSearch: '',
-            pesquisando: true
+            pesquisando: false
         })
-        console.log(this.state.resultSearch)
+
+
     }
 
-
     render() {
-        return (
-            <div className="App">
-                <Header 
-                    resultSearch={this.resultSearch}
-                    resetSearch={this.resetSearch}
-                    titulo={this.state.resultSearch}
+        console.log(this.state, 'antes do render')
+        if (true) {
+            return (
+                <div className="App">
+                    <Header 
+                        resultSearch={this.resultSearch}
+                        resetSearch={this.resetSearch}
+                        titulo={this.state.resultSearch}
+                        />
+                    <div className='App-container'>
+                        <ListProducts 
+                            pesquisando={this.state.pesquisando}
+                            result={this.state.resultSearch}
+                        />
+                    </div>
+                </div>          
+            )
+        }else{
+            return (
+                <div className="App">
+                    <Header 
+                        resultSearch={this.resultSearch}
+                        resetSearch={this.resetSearch}
+                        titulo={this.state.resultSearch}
                     />
+                    <div className='App-container'>
+                        <ListProducts  />
+                    </div>
+                </div>          
+            )
+        }
 
-                <div className='App-container'>
-                    <ListProducts />
-                    <ListProducts />
-                    <ListProducts />
-                    <ListProducts />
-                    <ListProducts />
-                    <ListProducts />
-                    <ListProducts />
-                    <ListProducts />
-                    <ListProducts />
-                    <ListProducts />
-                    <ListProducts />
-                    <ListProducts />
-                    <ListProducts />
-                    <ListProducts />
-                    <ListProducts />
-                    <ListProducts /> 
-                </div>
-        
-                
-            </div>
-        )
     }
 }
     
