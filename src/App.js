@@ -26,66 +26,46 @@ class App extends Component {
         this.resultSearch(this.state.resultSearch)
     }
 
-    loadingTime = (time) =>{
+    loadingTime = (seconds) =>{
         setTimeout(()=>{
             this.setState({
-                resultSearch: '',
                 pesquisando: false
             })
-        }, time)
+        }, seconds)
     }
    
-
-    resultSearch = (params) =>{
-        if(params !== ""){
-            this.setState({pesquisando: true})
-            this.setState({resultSearch: params})
-            const url = `https://loja-mmartan.firebaseio.com/produtos.json?orderBy="title"&equalTo="${params}"`
-            axios.get(url)
-                .then(dados => {
-                    this.setState({
-                        produtos: dados.data
-                    })
-                })
-                .catch(err => {
-                    console.log('Deu ruim',err);
-                })
-            
-            this.loadingTime(3000)
-                
-        }else{
-            this.setState({pesquisando: true})
-            const url = `https://loja-mmartan.firebaseio.com/produtos.json?orderBy="title"`
-            axios.get(url)
-                .then(dados => {
-                    this.setState({
-                        produtos: dados.data
-                    })
-                })
-                .catch(err => {
-                    console.log('Deu ruim',err);
-                })
-            this.loadingTime(2000)
-        }
-       
-    } 
-
-    resetSearch = () =>{  
+    getData = (params = null) => {
         this.setState({pesquisando: true})
-        const url = `https://loja-mmartan.firebaseio.com/produtos.json?orderBy="title"`
+
+        if (params) {
+            this.setState({resultSearch: params})
+        }else{
+            this.setState({resultSearch: ''})
+        }
+
+        // Verifica se existe parametros para buscar, se não houver, lista tudo
+        const query = params ? `&equalTo="${params}"` : ''
+        const url = `https://loja-mmartan.firebaseio.com/produtos.json?orderBy="title"${query}`
         axios.get(url)
             .then(dados => {
                 this.setState({
-                    produtos: dados.data,
-                    pesquisando: false
+                    produtos: dados.data
                 })
             })
             .catch(err => {
                 console.log('Deu ruim',err);
             }) 
-       
 
-        
+        // Chama a função de animação Loading  
+        this.loadingTime(2000)        
+    }
+
+    resultSearch = (params) =>{
+        this.getData(params)       
+    } 
+
+    resetSearch = () =>{
+        this.getData()               
     }
 
     render() {
@@ -94,7 +74,6 @@ class App extends Component {
                 return (                                              
                         <Loading />                        
                     )
-
             }
             return (
                 <div className="App">
@@ -108,9 +87,8 @@ class App extends Component {
                     </div>
                     <div className='App-container'>                                          
                         {                            
-                           Object.keys(this.state.produtos)
+                            Object.keys(this.state.produtos)
                             .map(key => {
-
                                 return  <Product key={key}
                                         title={this.state.produtos[key].title}
                                         description={this.state.produtos[key].description}
@@ -125,6 +103,5 @@ class App extends Component {
             )
     }
 }
-    
+              
 export default App;
-    
