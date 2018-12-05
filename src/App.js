@@ -4,6 +4,7 @@ import './App.css'
 // Components
 import Header from './components/Header'
 import Product from './components/Product'
+import Loading from './components/Loading'
 
 
 class App extends Component {
@@ -24,6 +25,15 @@ class App extends Component {
     componentDidMount(){
         this.resultSearch(this.state.resultSearch)
     }
+
+    loadingTime = (time) =>{
+        setTimeout(()=>{
+            this.setState({
+                resultSearch: '',
+                pesquisando: false
+            })
+        }, time)
+    }
    
 
     resultSearch = (params) =>{
@@ -34,13 +44,14 @@ class App extends Component {
             axios.get(url)
                 .then(dados => {
                     this.setState({
-                        produtos: dados.data,
-                        pesquisando: false
+                        produtos: dados.data
                     })
                 })
                 .catch(err => {
                     console.log('Deu ruim',err);
                 })
+            
+            this.loadingTime(3000)
                 
         }else{
             this.setState({pesquisando: true})
@@ -48,13 +59,13 @@ class App extends Component {
             axios.get(url)
                 .then(dados => {
                     this.setState({
-                        produtos: dados.data,
-                        pesquisando: false
+                        produtos: dados.data
                     })
                 })
                 .catch(err => {
                     console.log('Deu ruim',err);
                 })
+            this.loadingTime(2000)
         }
        
     } 
@@ -72,21 +83,18 @@ class App extends Component {
             .catch(err => {
                 console.log('Deu ruim',err);
             }) 
-      
-        this.setState({
-            resultSearch: '',
-            pesquisando: false
-        })
+       
+
         
     }
 
     render() {
+            console.log('Status pesquisando antes do render',this.state.pesquisando);
             if (this.state.pesquisando) {
-                return (
-                    <div>
-                        <p>Carregando .... </p>                        
-                    </div>
-                )
+                return (                                              
+                        <Loading />                        
+                    )
+
             }
             return (
                 <div className="App">
