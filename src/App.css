@@ -31,6 +31,48 @@
     color: #f82fcd;
 }
 
+.footer-pagination{
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-bottom: 0px;
+
+}
+.pagination{
+    display: flex;
+    list-style-type: none;
+    flex-direction: row;
+    border-radius: 5px;
+
+}
+
+.pagination > li{
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    border: 1px solid gray;
+}
+
+.pagination > li:hover{
+    background-color: gray;
+}
+
+.pagination > li > a{
+    text-decoration: none;
+    color: black;
+}
+
+.pagination > .active{
+    background-color: gray;
+
+}
+
+.pagination > .active > a{
+    color: white;
+
+}
+
 @keyframes App-logo-spin {
     from {
         transform: rotate(0deg);

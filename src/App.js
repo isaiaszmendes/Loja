@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Pagination from "react-js-pagination";
 import axios from 'axios'
 import './App.css'
 // Components
@@ -16,12 +17,49 @@ class App extends Component {
             resultSearch: "",
             pesquisando: false,
             produtos: {},
+            activePage: 1,
+            totalItems: 4,
+            countPages: 0,
+            countItems: 0
+
         }
 
-        this.resetSearch    = this.resetSearch.bind(this)
-        this.resultSearch      = this.resultSearch.bind(this)
+        this.resetSearch        = this.resetSearch.bind(this)
+        this.resultSearch       = this.resultSearch.bind(this)
+        this.handlePageChange   = this.handlePageChange.bind(this)
 
     }
+
+    listItems = (items, pageActual, limitItems) => {
+        let result = [];
+        let totalPage = Math.ceil( items.length / limitItems );
+        let count = ( pageActual * limitItems ) - limitItems;
+        let delimiter = count + limitItems;
+
+        // this.setState({
+        //     countPages: totalPage
+        // })
+        // console.log(totalPage);
+        
+        if(pageActual <= totalPage){
+            for(let i=count; i<delimiter; i++){
+                if(items[i] != null){
+                    result.push(items[i]);
+                }
+                count++;
+            }
+        }
+    
+        // console.log(result)
+        return result
+    }
+
+    handlePageChange(pageNumber) {
+        console.log(`active page is ${pageNumber}`);
+        this.setState({activePage: pageNumber});
+        this.getData(this.state.resultSearch)
+    }
+      
     componentDidMount(){
         this.resultSearch(this.state.resultSearch)
     }
@@ -46,19 +84,27 @@ class App extends Component {
         // Verifica se existe parametros para buscar, se não houver, lista tudo
         const query = params ? `&equalTo="${params}"` : ''
         const url = `https://loja-mmartan.firebaseio.com/produtos.json?orderBy="title"${query}`
+
         axios.get(url)
-            .then(dados => {
+            .then(dados => dados.data)
+            .then((produtos) => {
+                console.log(produtos);
                 this.setState({
-                    produtos: dados.data
+                    produtos: produtos,
+                    countItems: produtos.length
+                    
                 })
+
             })
             .catch(err => {
                 console.log('Deu ruim',err);
             }) 
 
         // Chama a função de animação Loading  
-        this.loadingTime(2000)        
+        this.loadingTime(1)        
     }
+
+
 
     resultSearch = (params) =>{
         this.getData(params)       
@@ -69,7 +115,6 @@ class App extends Component {
     }
 
     render() {
-            console.log('Status pesquisando antes do render',this.state.pesquisando);
             if (this.state.pesquisando) {
                 return (                                              
                         <Loading />                        
@@ -83,12 +128,12 @@ class App extends Component {
                         titulo={this.state.resultSearch}
                         />
                     <div className='resul-label'>
-                        <h5>Total: {Object.keys(this.state.produtos).length}</h5>
+                        <h5>Total: {this.state.countItems}</h5>
                     </div>
                     <div className='App-container'>                                          
-                        {                            
-                            Object.keys(this.state.produtos)
-                            .map(key => {
+                        {
+                            Object.keys(this.listItems(this.state.produtos, this.state.activePage, 4))
+                            .map((key) => {
                                 return  <Product key={key}
                                         title={this.state.produtos[key].title}
                                         description={this.state.produtos[key].description}
@@ -99,6 +144,17 @@ class App extends Component {
                             })
                         }                        
                     </div>
+
+                    <div className='footer-pagination'>                     
+                        <Pagination
+                        activePage={this.state.activePage}
+                        itemsCountPerPage={this.state.totalItems}
+                        totalItemsCount={Object.keys(this.state.produtos).length}
+                        pageRangeDisplayed={6}
+                        onChange={this.handlePageChange}
+                        />
+                    </div> 
+                
                 </div>          
             )
     }
