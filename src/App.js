@@ -101,7 +101,7 @@ class App extends Component {
             }) 
 
         // Chama a função de animação Loading  
-        this.loadingTime(1)        
+        this.loadingTime(4000)        
     }
 
 
