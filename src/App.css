@@ -36,6 +36,7 @@
     align-items: flex-end;
     justify-content: center;
     margin-bottom: 0px;
+  
 
 }
 .pagination{
@@ -43,7 +44,8 @@
     list-style-type: none;
     flex-direction: row;
     border-radius: 5px;
-    padding: 0
+    padding: 0;
+    /* outline:none; */
 }
 
 .pagination > li{
@@ -54,24 +56,27 @@
     align-items: center;    
     border: 1px solid gray;
     margin: 4px;
+
 }
 
 .pagination > li:hover{
-    background-color: gray;
+    background-color: rgb(82, 64, 119);
 }
 
 .pagination > li > a{
     text-decoration: none;
     color: black;
+    padding: 1px;
 }
 
 .pagination > .active{
-    background-color: gray;
+    background-color: rgb(82, 64, 119);
 
 }
 
 .pagination > .active > a{
     color: white;
+    outline:none;
 
 }
 
@@ -85,16 +90,17 @@
 }
 
 @media only screen and (max-device-width: 418px) {
-    .App-header {
-        padding-bottom: 18.425px;
 
-    } 
 }
 
 @media only screen and (max-device-width: 470px) {
     .result-label, h5{
         font-size: 11pt;    
     }
+    .App-header {
+        padding-bottom: 18.425px;
+
+    } 
 }
 
 @media only screen and (min-device-width: 700px) {

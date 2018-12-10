@@ -1,39 +1,65 @@
 .list-products{
-    background-color: #bfbfbf;
+    background-color: rgb(208, 208, 208);
     border-radius: 5px;
     transition: .8s;
     margin: 10px 0px;
     overflow: hidden;
+    padding: 10px 10px 0px
 }
 
 .product-img{
     overflow: hidden;
+    max-width:250px;
+    max-height: 250px;
+    width: auto;
+    height: auto;
+    border-radius: 5px 5px 0px 0px;
 }
 .list-products:hover{
     box-shadow: 5px 5px 10px darkgray;
 }
 
-.product-title{
-    font-family: Proxima Nova,-apple-system,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
+.product-info{
+    font-family: Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
     font-size: 15pt;
     display: flex;
-    justify-content: space-around;
-    align-content: center;
-    
+    justify-content: space-between;
 }
 
-.product-title,div,h3{
-    font-size: 15pt;
+.product-info,div,h3{
+    font-size: 12pt;
     transition: .8s;
 }
 .price-discunt{
     text-decoration: line-through;
+    font-size: 9pt;
 }
 
+.product-title{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 20px;
+    /* flex-direction: column */
+}
+.product-title, h3{
+    margin-bottom: 0px;
+}
 
+.product-title , p{
+    color: #666;
+    font-size: 14px;
+    font-family: Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
+}
+.product-price{
+    padding-right: 8px;
+}
 
 @media only screen and (max-device-width: 470px) {
-    .product-title, h3{
+    .product-info, h3{
         font-size: 13pt;
+    }
+    .product-img{
+        max-height: 180px;
     }
 }

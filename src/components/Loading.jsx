@@ -7,9 +7,7 @@ const Loading = props => {
         <div className='loading'>
             <div>
                 <h3>Carregando</h3>
-                <div className='bolinha'>
-
-                </div>
+                <div className='loading-barra'></div>
             </div>
         </div>
     )

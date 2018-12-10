@@ -110,7 +110,7 @@ class App extends Component {
             }) 
 
         // Chama a função de animação Loading  
-        this.loadingTime(1000)        
+        this.loadingTime(4000)        
     }
 
     // carrega os dados quando a aplicação inicia pela primeira vez
